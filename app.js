@@ -16,17 +16,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use("/api/", mainRouters);
 
-mongoose
-  .connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("database connected");
-  })
-  .catch((e) => {
-    console.log(e.message);
-  });
+// mongoose
+//   .connect(process.env.DB_URL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     console.log("database connected");
+//   })
+//   .catch((e) => {
+//     console.log(e.message);
+//   });
 
 const port = process.env.PORT || 5035;
 app.get("/", (request, response) => {
