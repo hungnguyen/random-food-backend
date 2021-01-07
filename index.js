@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use("/api/", mainRouters);
 
-let db_message = "";
+let db_message = "database connecting";
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
