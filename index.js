@@ -17,11 +17,6 @@ var allowedOrigins = [
 ];
 
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(logger("dev"));
-app.use("/api/", mainRouters);
-
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -38,6 +33,10 @@ app.use(
     },
   })
 );
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(logger("dev"));
+app.use("/api/", mainRouters);
 
 let db_message = "";
 mongoose
