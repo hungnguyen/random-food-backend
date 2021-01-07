@@ -14,6 +14,7 @@ if (result.error) {
 mainRouters.all("*", cors());
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
