@@ -30,7 +30,7 @@ export function createFood(req, res) {
 
 export function getAllFoods(req, res) {
   Food.find()
-    .select("_id name categoryId userId")
+    .select("_id name categoryId userId image")
     .then((allFood) => {
       res.status(200).json({
         success: true,
