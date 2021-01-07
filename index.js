@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use("/api/", mainRouters);
 
+let db_message = "";
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -23,9 +24,11 @@ mongoose
   })
   .then(() => {
     console.log("database connected");
+    db_message = "database connected";
   })
   .catch((e) => {
     console.log(e.message);
+    db_message = e.message;
   });
 
 const port = process.env.PORT || 5035;
@@ -33,6 +36,7 @@ app.get("/", (request, response) => {
   response.status(200).json({
     message: "Welcom to Random Food Api 1.0.0",
     db_status: mongoose.connection.readyState,
+    db_message,
   });
 });
 
