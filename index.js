@@ -16,17 +16,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use("/api/", mainRouters);
 
-mongoose
-  .connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("database connected");
-  })
-  .catch((e) => {
-    console.log(e.message);
-  });
+var mongoDB = process.env.DB_URL;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+// mongoose
+//   .connect(process.env.DB_URL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     console.log("database connected");
+//   })
+//   .catch((e) => {
+//     console.log(e.message);
+//   });
 
 const port = process.env.PORT || 5035;
 app.get("/", (request, response) => {
