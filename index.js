@@ -32,6 +32,7 @@ const port = process.env.PORT || 5035;
 app.get("/", (request, response) => {
   response.status(200).json({
     message: "Welcom to Random Food Api 1.0.0",
+    db_status: mongoose.connection.readyState,
   });
 });
 
