@@ -7,6 +7,7 @@ export function createFood(req, res) {
     name: req.body.name,
     categoryId: req.body.categoryId,
     userId: req.body.userId,
+    image: req.body.image,
   });
 
   return food
